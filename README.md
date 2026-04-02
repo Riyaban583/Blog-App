@@ -17,7 +17,7 @@ HTML, CSS, JavaScript / React.js
 
 Backend:
 
-Node.js, Express.js
+Node.js, Express.js,Rest API's
 
 Database:
 
