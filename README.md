@@ -76,5 +76,4 @@ This project is licensed under the MIT License.
 
 Riya Bansal
 
-Full Stack Developer
-DSA Learner
+
