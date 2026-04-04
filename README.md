@@ -13,7 +13,7 @@ A full-featured Blog Application where users can create, read, update, and delet
 
 Frontend:
 
-HTML, CSS, JavaScript / React.js
+HTML, CSS, JavaScript / React.js,Next js
 
 Backend:
 
