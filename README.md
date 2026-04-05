@@ -17,7 +17,7 @@ HTML, CSS, JavaScript / React.js,Next js
 
 Backend:
 
-Node.js, Express.js,Rest API's
+Node.js, Express.js,Rest API's,JWT Authentication
 
 Database:
 
