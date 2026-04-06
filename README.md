@@ -17,7 +17,7 @@ HTML, CSS, JavaScript / React.js,Next js
 
 Backend:
 
-Node.js, Express.js,Rest API's,JWT Authentication
+Node.js, Express.js,Rest APIs,JWT Authentication
 
 Database:
 
@@ -26,7 +26,6 @@ MongoDB / MySQL
 Other Tools:
 
 Git & GitHub
-REST APIs
 📂 Project Structure
 blog-app/
 │
