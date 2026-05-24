@@ -43,7 +43,7 @@ const page = () => {
             formData.append("authorImg", data.authorImg)
             formData.append("image", image)
 
-            const response = await axios.post("/api/blog", formData)
+            const response = await axios.post("/api/blogs", formData)
 
             console.log(response.data)
 
