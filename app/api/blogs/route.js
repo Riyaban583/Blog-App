@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/config/db";
 import { writeFile } from "fs/promises";
 import BlogModel from "@/lib/models/BlogModel";
+
 const fs = require("fs");
 
 const LoadDB = async () => {
@@ -10,22 +11,29 @@ const LoadDB = async () => {
 
 LoadDB();
 
-// API Endpoint to get all blogs
+// API Endpoint to get blogs
+
 export async function GET(request) {
 
     const blogId = request.nextUrl.searchParams.get("id");
+
     if (blogId) {
 
         const blog = await BlogModel.findById(blogId);
 
-        return NextResponse.json(blog);
-    }
-    else{
+        return NextResponse.json({
+            success: true,
+            blogs: blog
+        });
+
+    } else {
+
         const blogs = await BlogModel.find({});
 
-    return NextResponse.json({
-        blogs
-    });
+        return NextResponse.json({
+            success: true,
+            blogs
+        });
 
     }
 }
@@ -43,10 +51,12 @@ export async function POST(request) {
         const image = formData.get("image");
 
         if (!image) {
+
             return NextResponse.json({
                 success: false,
                 msg: "No Image Selected"
             });
+
         }
 
         const imageByteData = await image.arrayBuffer();
@@ -87,17 +97,39 @@ export async function POST(request) {
         });
 
     }
-
 }
 
 // API Endpoint For Deleting Blogs
 
 export async function DELETE(request) {
-    const id = await request.nextUrl.searchParams.get("id");
-    const blog = await BlogModel.findById(id);
-    fs.unlink(`./public/${blog.image}`, ()=>{});
-    await BlogModel.findByIdAndDelete(id);
-    return NextResponse.json({msg:"Blog Deleted"});
+
+    try {
+
+        const id = request.nextUrl.searchParams.get("id");
+
+        const blog = await BlogModel.findById(id);
+
+        if (blog?.image) {
+
+            fs.unlink(`./public${blog.image}`, () => { });
+
+        }
+
+        await BlogModel.findByIdAndDelete(id);
+
+        return NextResponse.json({
+            success: true,
+            msg: "Blog Deleted"
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        return NextResponse.json({
+            success: false,
+            msg: error.message
+        });
+
+    }
 }
-
-
